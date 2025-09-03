@@ -74,10 +74,12 @@ function meta:drawOwnableInfo()
     end
 
     if self:IsVehicle() then
-        local driver = self:GetDriver()
-        if driver:IsPlayer() then
-            table.insert(doorInfo, DarkRP.getPhrase("driver", driver:Nick()))
-        end
+		if self.GetDriver then
+			local driver = self:GetDriver()
+			if driver and driver:IsPlayer() then
+				table.insert(doorInfo, DarkRP.getPhrase("driver", driver:Nick()))
+			end
+		end
     end
 
     local x, y = ScrW() / 2, ScrH() / 2
